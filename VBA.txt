@@ -1,0 +1,57 @@
+
+
+
+查询:
+
+获取整行数据
+判断学号和输入的是否相等
+将相等的数据复制到对应的sheet1表中
+
+
+Private Sub query_Click()
+
+Sheet1.Range("A1") = TextBox1.text
+Dim text As String
+text = TextBox1.text
+
+Dim count As Long
+Dim index As Long
+Dim flag As Boolean
+count = Sheet2.UsedRange.Rows.count
+flag = True
+'MsgBox Sheet2.UsedRange.Rows(1)
+' Sheet2.UsedRange.EntireRow.Column
+'MsgBox Sheet2.UsedRange.EntireRow.Column
+'MsgBox Sheet2.Range("C" & (0 + 2)).Value
+
+For i = 0 To count
+    If Sheet2.Range("C" & (i + 2)).Value = text Then
+    Sheet2.Rows(i + 2).Copy Destination:=Sheet1.Rows(10)
+    flag = False
+    End If
+    Next
+If flag Then MsgBox "未找到该学生号"
+End Sub
+
+
+添加学生:
+
+获取固定索引下的所有行数据,然后追加复制到sheet2表中
+
+
+
+编辑学生
+
+根据学号进行操作:
+
+在固定的索引下获取行数据, 在sheet2中获取匹配学号的数据,然后复制过去
+
+
+
+删除学生:
+
+删除只需要学号即可
+
+获取固定索引下的学号,然后查询sheet2表中的数据,查询到之后就弹出对话框是否删除,是就删除!
+
+
